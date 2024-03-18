@@ -1,0 +1,54 @@
+{% extends "reservation/index.html" %}
+{% load i18n %}
+{% block head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{{ wizard.form.media }}
+{% endblock %}
+{% block content %}
+<p class="steps">Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</p>
+<form action="" method="post">{% csrf_token %}
+    <table>
+        {{ wizard.management_form }}
+        {% if wizard.form.forms %}
+        {{ wizard.form.management_form }}
+        {% for form in wizard.form.forms %}
+        {{ form.as_table }}
+        {% endfor %}
+        {% else %}
+        {{ wizard.form }}
+        {% endif %}
+    </table>
+    <br>
+    {% if wizard.steps.prev %}
+    <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}">1</button>
+    <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">Предыдущий</button>
+    {% endif %}
+    <input type="submit" value="{% translate " submit" %}" />
+</form>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/ru.js"></script>
+<script>
+    var availableDates = document.querySelector(".date").getAttribute("data-available-dates");
+    console.log(availableDates);   
+    flatpickr(".date", {
+        locale: "ru",
+        altInput: true,
+        altFormat: "F j, Y",
+        dateFormat: "Y-m-d",
+        minDate: "today",
+        enable: [
+            function(date) {
+                return date.getDay() !== Number(availableDates);
+            },
+        ],
+        onChange: function(selectedDates, dateStr, instance) {
+            console.log("Selected Date and Time:", selectedDates[0]);
+        }
+        
+    });
+
+</script>
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Select Example</title>
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<select id="timeSelect">
+  <!-- Можете вставить опции, соответствующие вашим временным интервалам -->
+  <option value="10:00-12:00">10:00-12:00</option>
+  <option value="14:00-16:20">14:00-16:20</option>
+</select>
+
+<script>
+  // Если нужно выполнить какие-то действия при изменении выбора, можно использовать обработчик события change
+  $(document).ready(function () {
+    $('#timeSelect').change(function() {
+      var selectedTime = $(this).val();
+      console.log(selectedTime);  // Здесь можно выполнить нужные действия с выбранным временем
+    });
+  });
+</script>
+
+</body>
+</html>

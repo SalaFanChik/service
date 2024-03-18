@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <div class="auth-container">
+    {% csrf_token %}
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">logout</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+
+
+</body>
+</html>

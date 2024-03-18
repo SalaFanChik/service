@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+</head>
+<body>
+    <h2>Contact Us</h2>
+    <form method="post" action="/payment/"> <!-- Укажите правильный URL для отправки данных формы -->
+        {% csrf_token %} <!-- Добавляет CSRF токен для защиты от CSRF атак -->
+        <label for="name">Your Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="email">Your Email:</label><br>
+        <input type="email" id="email" name="email"><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

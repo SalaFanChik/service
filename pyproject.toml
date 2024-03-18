@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "mk-salony"
+version = "0.1.0"
+description = ""
+authors = ["SalaFanChik <alik2000nomer@gmail.com>"]
+readme = "README.md"
+packages = [{include = "mk_salony"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^5.0.1"
+django-appointment = "^3.0.1"
+django-extensions = "^3.2.3"
+bpython = "^0.24"
+ipython = "^8.20.0"
+django-formtools = "^2.5.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
